@@ -6,7 +6,7 @@ import { Alert, Button, TextInput, View, StyleSheet,Text,TouchableOpacity } from
 export default function Welcome ({navigation}){
 
 const nextpage = () => {
-  navigation.navigate('Signup')
+  navigation.navigate('signUp')
 }
 
 
@@ -15,7 +15,7 @@ const nextpage = () => {
       <View style={styles.container}>
      <View style={styles.container2}>
   
-       <Image style={styles.logo} source={require("../assets/Caught_9remove.png")}/>
+       <Image style={styles.logo} source={require("../assets/icon.png")}/>
           <Text style={styles.welcome1}>Welcome To</Text>
 
       <TouchableOpacity>
@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#fff',
     borderRadius:15,
-    height:320,
-    width:320,
+   
+    width:360,
     marginTop:50,
     
   },

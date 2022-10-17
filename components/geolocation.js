@@ -73,34 +73,14 @@ export default function Geolocation() {
             <Text>This is a Callout</Text>
           </Callout>
         </Marker>
-{locations.map((cor)=>(
-  
-  
-   <Marker
-          coordinate={{latitude:cor.latitude, longitude:cor.longitude}}
-          title=""
-          description=""
-          pinColor="red"
-          draggable={true}
-          onDragStart={(e) => {
-            console.log('Drag Start', e.nativeEvent.coordinate);
-          }}
-          onDragEnd={(e) => {
-            console.log('Drag End', e.nativeEvent.coordinate);
 
-            setPin({
-              latitude: e.nativeEvent.coordinate.latitude,
-              longitude: e.nativeEvent.coordinate.longitude,
-            });
-          }}>
-          <Callout>
-            <Text>This is a Callout</Text>
-          </Callout>
-        </Marker>
-  
-   
-))}
+    <Marker coordinate={pin} title='Marker' />
 
+        {locations.map((cor)=>(
+           <Marker coordinate={{latitude:cor.latitude, longitude:cor.longitude}} title='Marker' 
+           />
+        ))}
+  
         <Circle center={pin} radius={100} />
       </MapView>
       
