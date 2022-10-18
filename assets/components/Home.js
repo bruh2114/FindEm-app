@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import { Text, View, StyleSheet, ScrollView,Image } from 'react-native';
 import Constants from 'expo-constants';
@@ -19,20 +18,18 @@ export default function Home() {
           backgroundColor: '#1B6C72',
         }}>
         </View>
-        
-      <ScrollView>
+     
       <Text style={styles.headingMissing}> Recent Post</Text>
        
       <View style={{ flexDirection: 'row' }}>
-
+   
+      <ScrollView horizontal= {true}>
     
         <View style={styles.card}>
 
          <Image
           style={styles.logo} source={require('../assets/images/women.png')}/>
 
-          <Text > </Text>
-
           <View style={styles.box1}>
           <Text style={styles.headings}>Kylie Fox</Text>
           <Text style={styles.heading1}> Missing 10/06/2022 Kimberley</Text>
@@ -40,24 +37,38 @@ export default function Home() {
         </View>
         <View style={styles.card}>
 
-         <Image style={styles.logo} source={require('../assets/images/women.png')}/>
+         <Image style={styles.logo} source={require('../assets/images/missing4.jfif')}/>
 
-        <Text> </Text>
           <View style={styles.box1}>
           <Text style={styles.headings}>Kylie Fox</Text>
-          <Text style={styles.heading1}> Missing 10/06/2022 Kimberley</Text>
+          <Text style={styles.heading1}> Missing 10/08/2022 Roodepan</Text>
         </View>
 
-
-        </View>
-
-        <View style={styles.card}>
-          <Text> Tag </Text>
         </View>
 
         <View style={styles.card}>
-          <Text> Tag </Text>
+
+        <Image
+          style={styles.logo} source={require('../assets/images/missing3.jfif')}/>
+
+          <View style={styles.box2}>
+          <Text style={styles.headings}>Kylie Fox</Text>
+          <Text style={styles.heading1}> Missing 10/12/2022 Floors</Text>
         </View>
+        </View>
+
+        <View style={styles.card}>
+        <Image
+          style={styles.logo} source={require('../assets/images/missing5.jfif')}/>
+          <View style={styles.box2}>
+          <Text style={styles.headings}>Kylie Fox</Text>
+          <Text style={styles.heading1}> Missing 10/15/2022 Kimberley </Text>
+        </View>
+
+     
+        </View>
+        
+      </ScrollView>
       </View>
 
      
@@ -124,6 +135,7 @@ export default function Home() {
 
 <View style={styles.cardMissingPerson}>
           <View   > <Image style={styles.logo2} source={require('../assets/images/young.png')}/> </View>
+
           <View><Text style={styles.paragraph2}>Scott Sinclair </Text>
           <Text style={styles.paragraph3}>
           {' '}
@@ -148,7 +160,7 @@ export default function Home() {
         }}>
         </View>
 
-      </ScrollView>
+     
 
     </View>
   );
@@ -159,7 +171,7 @@ const styles = StyleSheet.create({
     flex: 1,
 
     paddingTop: Constants.statusBarHeight,
-    backgroundColor: '#ecf0f1',
+    backgroundColor: '#FFFFFF',
     padding: 8,
   },
 
@@ -191,6 +203,8 @@ const styles = StyleSheet.create({
     height:250,
     width:190,
     marginTop:1,
+    borderRadius:5,
+ 
   },
   logo2:{
     height: 99,
@@ -230,8 +244,16 @@ fontfamily: 'Inter',
     width: 190,
     height: 55,
     borderRadius: 5,
-    marginTop: '-35%',
+    marginTop: '-39%',
    
+   
+ },
+ box2:{
+ backgroundColor: '#1B6C72',
+    width: 190,
+    height: 55,
+    borderRadius: 5,
+  marginTop: '-29%',
  },
 
 
