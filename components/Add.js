@@ -1,10 +1,40 @@
 import React, { Component } from 'react';
 import { Alert, Button, TextInput, View, StyleSheet,Text,TouchableOpacity, } from 'react-native';
  import{Image} from 'react-native';
+ import { Avatar } from 'react-native-paper';
+ import { launchImageLibrary} from 'react-native-image-picker'
 
 
 
-export default function Add ({navigation}){
+ const Add = ({navigation}) => {
+
+  const [Pic, setPic] = React.useState('');
+
+    const setToastMsg = msg => {
+    ToastAndroid.showWithGravity(msg, ToastAndroid.SHORT, ToastAndroid.CENTER)
+  }
+
+  const uploadImage = () => {
+    let options = {
+      mediaType: 'photo',
+      quality: 1,
+      includeBase64: true,
+    }
+
+  launchImageLibrary(options, response => {
+      if(response.didCancel){
+        setToastMsg('Cancelled image selection')
+      }else if(response.errorCode == 'Permission'){
+      setToastMsg('Permission not satisfied')
+      }else if(response.errorCode == 'Permission'){
+        setToastMsg(response.errorMessage)
+      }else if(response.assets[0].fileSize > 2097152){
+        Alert.alert('Maximum image size exceeded', 'Please choose image under 2 MB', [{text: 'OK'}])
+      }else{
+        setPic(response.assets[0].base64)
+      }
+    })
+  }
 
 const nextpage = () => {
   navigation.navigate('')
@@ -16,7 +46,23 @@ const nextpage = () => {
       <View style={styles.header}>
       Add Missing PERSON 
     <View style={styles.inputcontainer}>
-     <Image style={styles.imglogo} source={require("../assets/addimage.png")}/>
+    <TouchableOpacity
+          onPress={() => alert('pressed')}
+          underlayColor="rgba(0,0,0,0)"></TouchableOpacity>
+        <Avatar.Image
+          size={250}
+          source={{ uri: 'data:image/png;base64,' + Pic }}
+        />
+<View>
+        <Button mode="contained" onPress={() => uploadImage()}>
+          Upload Image
+        </Button>
+    <Button mode="contained" onPress={() => removeImage()}>
+          Remove Image
+        </Button>
+
+<Button onPress={() => navigation.navigate('VideoPlayer')}>Next Page</Button>
+      </View>
       
      <TextInput
          
