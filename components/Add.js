@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { Alert, Button, TextInput, View, StyleSheet,Text,TouchableOpacity, } from 'react-native';
+import { Alert, Button, TextInput, View, StyleSheet,Text,TouchableOpacity,ToastAndroid, ScrollView} from 'react-native';
  import{Image} from 'react-native';
  import { Avatar } from 'react-native-paper';
  import { launchImageLibrary} from 'react-native-image-picker'
 
-
-
- const Add = ({navigation}) => {
+const Add = ({navigation}) => {
 
   const [Pic, setPic] = React.useState('');
 
@@ -35,18 +33,23 @@ import { Alert, Button, TextInput, View, StyleSheet,Text,TouchableOpacity, } fro
       }
     })
   }
+  
 
 const nextpage = () => {
-  navigation.navigate('')
+  navigation.navigate('personsinfo')
 }
 
-
    return (
+     <ScrollView>
      <View style={styles.container}>
-      <View style={styles.header}>
-      Add Missing PERSON 
+
+
+
+     <View style={styles.header}>
+      <Text>Add Missing PERSON</Text> 
     <View style={styles.inputcontainer}>
-    <TouchableOpacity
+
+         <TouchableOpacity
           onPress={() => alert('pressed')}
           underlayColor="rgba(0,0,0,0)"></TouchableOpacity>
         <Avatar.Image
@@ -54,15 +57,14 @@ const nextpage = () => {
           source={{ uri: 'data:image/png;base64,' + Pic }}
         />
 <View>
-        <Button mode="contained" onPress={() => uploadImage()}>
-          Upload Image
+        <Button title='Upload Image' mode="contained" onPress={() => uploadImage()}>
+          
         </Button>
-    <Button mode="contained" onPress={() => removeImage()}>
-          Remove Image
+    <Button title='Remove Image' mode="contained" onPress={() => removeImage()}>
+          
         </Button>
 
-<Button onPress={() => navigation.navigate('VideoPlayer')}>Next Page</Button>
-      </View>
+</View>
       
      <TextInput
          
@@ -145,46 +147,43 @@ const nextpage = () => {
           style={styles.input12}
         />
    
-        <View  style={styles.signupBtn}>
+        <View  style={styles.addBtn}>
         <TouchableOpacity>
-          <Text  style={styles.signupText} onPress={nextpage}>
+          <Text  style={styles.addText} onPress={nextpage}>
           Detect Location
-          </Text>
+          </Text>  
       </TouchableOpacity>
       
      </View>
-     <View  style={styles.signupBtn2}>
+     <View  style={styles.addBtn2}>
       <TouchableOpacity>
-                    <Text  style={styles.signupText2} onPress={nextpage}>
+        <Text  style={styles.addText2} onPress={nextpage}>
           Submit
-
-          </Text>
+        </Text>
       </TouchableOpacity>
   </View>
         </View>
          </View>
-             </View>
-       
-       
-    
-            
+           </View>
+            </ScrollView>
     );
   }
+
+  export default Add;
 
 const styles = StyleSheet.create({
  container: {
     flex: 1,
     backgroundColor:'#FFFFFF',
+    height: '100%',
  },
-
 
 header:{
 fontWeight:'700',
 fontSize:26, 
 marginLeft:30,
-
-
 },
+
   input: {
     width: 280,
     height: 44,
@@ -195,12 +194,15 @@ marginLeft:30,
     marginBottom: '1%',
     marginTop:13,
   },
-  imglogo:{
-    marginLeft:90,
-    width:80,
-    height:80,
-    marginTop:-60,
-  },
+  // imglogo:{
+  //   marginLeft:90,
+  //   width:80,
+  //   height:80,
+  //   marginTop:-60,
+  // },
+  //addimagebuttons:{
+//backgroundColor:'#000',
+  //},
   input3:{
  width: 180,
     height: 44,
@@ -257,22 +259,21 @@ marginLeft:30,
     marginTop:13,
   },
 
-   signupText:{
+   addText:{
     fontSize:18,
     color:'#fff',
     fontWeight:'600',
     textAlign:'center',
   
-
   },
-signupText2:{
+addText2:{
     fontSize:18,
     color:'#fff',
     fontWeight:'600',
     textAlign:'center',
  
 },
-signupBtn:{
+addBtn:{
 width:240,
 height:30,
 backgroundColor:'#1B6C72E5',
@@ -283,7 +284,7 @@ borderRadius:27,
 margin:-5,
 
 },
-signupBtn2:{
+addBtn2:{
 width:240,
 height:30,
 backgroundColor:'#1B6C72E5',
@@ -299,9 +300,6 @@ inputcontainer:{
     marginBottom: '20%',
     marginTop:105,
     marginLeft:-10,
-
-
 },
 
 });
-
