@@ -16,6 +16,8 @@ const nextpage = () => {
   signIn(auth, email, password)
  }
 
+ 
+
    return (
 
       <View style={styles.container}>

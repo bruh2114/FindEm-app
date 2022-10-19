@@ -15,9 +15,10 @@ export default function Signup({ navigation }) {
   const [password, setPassword] = useState('');
 
   const registerUser = () => {
-    alert("clicked")
+    
 
-    SignUp(auth, email, password)
+    navigation.navigate('home')
+   // SignUp(auth, email, password)
 
   }
   return (

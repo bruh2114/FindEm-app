@@ -3,12 +3,7 @@ import { Alert, Button, TextInput, View, StyleSheet,Text,TouchableOpacity } from
  import{Image} from 'react-native';
 
 
-export default function Welcome ({navigation}){
-
-const nextpage = () => {
-  navigation.navigate('signUp')
-}
-
+ function Welcome ({navigation}){
 
    return (
      
@@ -25,8 +20,11 @@ const nextpage = () => {
        
            </View>
             <View  style={styles.welcomeBtn}>
-        <TouchableOpacity>
-          <Text  style={styles.welcomeText} onPress={nextpage}>
+        <TouchableOpacity
+            title="Get Started"
+            onPress={()=> navigation.navigate('signUp')}
+        >
+          <Text  style={styles.welcomeText}>
           Get started
           </Text>
       </TouchableOpacity>
@@ -44,16 +42,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#73A9AD',
+    height: 'auto',
     
   },
+
   container2: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#fff',
     borderRadius:15,
-   
-    width:360,
+    height:320,
+    width:320,
     marginTop:50,
     
   },
@@ -100,7 +100,4 @@ inputcontainer:{
 }
 });
 
-
-
-  
-
+export default Welcome

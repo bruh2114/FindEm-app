@@ -5,13 +5,13 @@ import { mdiNavigationVariantOutline } from '@mdi/js';
 
 import { Card } from 'react-native-paper';
 
-export default function Navigation() {
+export default function Notification() {
   return (
     <View style={styles.container}>
       <Text style={styles.paragraph}>
         RECENT POSTS
       </Text>
-            <Image style={styles.logo} source={require('../assets/images/women.png')} />
+            <Image style={styles.logo} source={require('../assets/images/missing1.jpg')} />
     </View>
   );
 }
