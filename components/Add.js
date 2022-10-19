@@ -46,24 +46,21 @@ const nextpage = () => {
 
 
      <View style={styles.header}>
-      <Text>Add Missing PERSON</Text> 
+      <Text >Add Missing PERSON</Text> 
     <View style={styles.inputcontainer}>
 
          <TouchableOpacity
+         
           onPress={() => alert('pressed')}
           underlayColor="rgba(0,0,0,0)"></TouchableOpacity>
-        <Avatar.Image
+        <Avatar.Image style={styles.img}
           size={250}
           source={{ uri: 'data:image/png;base64,' + Pic }}
         />
 <View>
-        <Button title='Upload Image' mode="contained" onPress={() => uploadImage()}>
-          
-        </Button>
-    <Button title='Remove Image' mode="contained" onPress={() => removeImage()}>
-          
-        </Button>
-
+     <TouchableOpacity  mode="contained" onPress={() => uploadImage()}style={styles.add} >
+         <Image source={require('../assets/Plus-removebg-preview.png')}/>
+        </TouchableOpacity>
 </View>
       
      <TextInput
@@ -182,10 +179,20 @@ header:{
 fontWeight:'700',
 fontSize:26, 
 marginLeft:30,
-},
 
+},
+img:{
+  marginLeft:10,
+  backgroundColor:'#1B6C72',
+ 
+  marginTop:-70,
+},
+add:{
+  marginLeft:170,
+  marginTop:-90,
+},
   input: {
-    width: 280,
+    width: 288,
     height: 44,
     padding: 10,
     borderWidth: 1,
@@ -193,6 +200,7 @@ marginLeft:30,
     borderColor: '#000',
     marginBottom: '1%',
     marginTop:13,
+  
   },
   // imglogo:{
   //   marginLeft:90,
@@ -203,6 +211,7 @@ marginLeft:30,
   //addimagebuttons:{
 //backgroundColor:'#000',
   //},
+
   input3:{
  width: 180,
     height: 44,
@@ -232,7 +241,7 @@ marginLeft:30,
     padding: 10,
     borderWidth: 1,
     borderRadius: -50,
-    borderColor: '#1B6C72',
+    borderColor: '#000',
     marginBottom: '1%',
     marginTop:13,
   },
@@ -242,14 +251,14 @@ marginLeft:30,
     padding: 10,
     borderWidth: 1,
     borderRadius: -50,
-    borderColor: '#1B6C72',
+    borderColor: '#000',
     marginBottom: '1%',
     marginTop:-47,
     marginLeft:190,
   },
 
   input12: {
-    width: 280,
+    width: 288,
     height: 100,
     padding: 10,
     borderWidth: 1,
@@ -303,3 +312,4 @@ inputcontainer:{
 },
 
 });
+
