@@ -1,5 +1,4 @@
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import AssetExample from './AssetExample';
 import Home from './Home';
 import Add from './Add';
 import Setting from './Settings';

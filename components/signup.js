@@ -16,9 +16,8 @@ export default function Signup({ navigation }) {
 
   const registerUser = () => {
     
-
     navigation.navigate('home')
-   // SignUp(auth, email, password)
+    SignUp(auth, email, password)
 
   }
   return (

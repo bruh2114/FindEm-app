@@ -1,11 +1,20 @@
 
-import * as React from 'react';
+import React, { useEffect, useState} from 'react';
 import { Text, View, StyleSheet, ScrollView, Image } from 'react-native';
 import Constants from 'expo-constants';
+
+import { db } from '../auth/firebase';
+import { getMissingPerson } from '../database/firestore';
+
 
 // or any pure javascript modules available in npm
 
 export default function Home() {
+
+  const [missingPerson, setMissingPerson] = useState([]);
+  useEffect(() => {
+    getMissingPerson().then((missingPerson) => setMissingPerson(missingPerson));
+  });
   return (
     <View style={styles.container}>
 

@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Alert, Button, TextInput, View, StyleSheet,Text,TouchableOpacity,ToastAndroid, ScrollView} from 'react-native';
  import{Image} from 'react-native';
  import { Avatar } from 'react-native-paper';
- import { launchImageLibrary} from 'react-native-image-picker'
+ import { launchImageLibrary} from 'react-native-image-picker';
+ import { addMissingPerson } from '../database/firestore';
+ import { db } from '../auth/firebase';
 
 const Add = ({navigation}) => {
 
@@ -39,6 +41,25 @@ const nextpage = () => {
   navigation.navigate('personsinfo')
 }
 
+const [firstName,setName] = useState();
+const [surname,setSurname] = useState();
+const [age,setAge] = useState();
+const [gender,setGender] = useState();
+const [eyeColor,setEyeColor] = useState();
+const [hairColor,setHairColor] = useState();
+const [height,setHeight] = useState();
+const [weight,setWeight] = useState();
+const [missingFrom,setMissingFrom] = useState();
+const [missingSince,setMissingSince] = useState();
+const [identityMark,setIDMark] = useState();
+const [description,setDescription] = useState();
+
+
+const addInfo = () => {
+  addMissingPerson(db, firstName, surname, age, gender, eyeColor, hairColor, height, weight, missingFrom, missingSince, identityMark, description)
+  navigation.navigate('Home')
+}
+
    return (
      <ScrollView>
      <View style={styles.container}>
@@ -69,82 +90,94 @@ const nextpage = () => {
      <TextInput
          
           placeholder={'Name'}
-          secureTextEntry={true}
           style={styles.input}
+          value={firstName}
+          onChangeText={(val) => setName(val)}
         />
       <TextInput
          
           placeholder={'Surname'}
-          secureTextEntry={true}
           style={styles.input}
+          value={surname}
+          onChangeText={(val) => setSurname(val)}
         />
      
           <TextInput
          
          
           placeholder={'age'}
-          secureTextEntry={true}
           style={styles.input3}
+          value={age}
+          onChangeText={(val) => setAge(val)}
         />
           <TextInput
          
          
           placeholder={'gender'}
-          secureTextEntry={true}
           style={styles.input4}
+          value={gender}
+          onChangeText={(val) => setGender(val)}
         />
           <TextInput
          
          
           placeholder={'Eye-color'}
-          secureTextEntry={true}
           style={styles.input}
+          value={eyeColor}
+          onChangeText={(val) => setEyeColor(val)}
         />
           
          <TextInput
          
           placeholder={'Hair Color'}
-          secureTextEntry={true}
           style={styles.input}
+          value={hairColor}
+          onChangeText={(val) => setHairColor(val)}
         />
          <TextInput
          
           placeholder={'Height'}
-          secureTextEntry={true}
           style={styles.input7}
+          value={height}
+          onChangeText={(val) => setHeight(val)}
         />
          <TextInput
          
          
           placeholder={'Weight'}
-          secureTextEntry={true}
           style={styles.input8}
+          value={weight}
+          onChangeText={(val) => setWeight(val)}
         />
          <TextInput
          
          
           placeholder={'Missing From?(optional)'}
-          secureTextEntry={true}
           style={styles.input}
+          value={missingFrom}
+          onChangeText={(val) => setMissingFrom(val)}
         />
          <TextInput
          
          
           placeholder={'Missing Since?(optional)'}
-          secureTextEntry={true}
           style={styles.input}
+          value={missingSince}
+          onChangeText={(val) => setMissingSince(val)}
         />
         <TextInput
          
-          placeholder={'Identify Mark'}
-          secureTextEntry={true}
+          placeholder={'Identity Mark'}
           style={styles.input}
+          value={identityMark}
+          onChangeText={(val) => setIDMark(val)}
         />
           <TextInput
 
-          placeholder={'Specify Description'}
-          secureTextEntry={true}
+          placeholder={'Special Description'}
           style={styles.input12}
+          value={description}
+          onChangeText={(val) => setDescription(val)}
         />
    
         <View  style={styles.addBtn}>
@@ -157,7 +190,7 @@ const nextpage = () => {
      </View>
      <View  style={styles.addBtn2}>
       <TouchableOpacity>
-        <Text  style={styles.addText2} onPress={nextpage}>
+        <Text  style={styles.addText2} onPress={addInfo}>
           Submit
         </Text>
       </TouchableOpacity>

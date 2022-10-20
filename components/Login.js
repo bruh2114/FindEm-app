@@ -8,12 +8,9 @@ export default function Login ({navigation}){
   const [email, setEmail] = useState() ;
   const [password, setPassword] = useState();
 
-
-const nextpage = () => {
-  navigation.navigate('Signup')
-}
  const SignIn = () => {
   signIn(auth, email, password)
+  navigation.navigate('Home')
  }
 
  
