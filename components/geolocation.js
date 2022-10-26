@@ -35,11 +35,13 @@ export default function Geolocation() {
         return;
       }
       let location = await Location.getCurrentPositionAsync({});
-      console.log(location);
+      console.log(location); console.log(locations)
     })();
   }, []);
   return (
     <View style={styles.container}>
+
+      <Text>Location</Text>
       <MapView
         style={styles.map}
         initialRegion={{
@@ -73,35 +75,14 @@ export default function Geolocation() {
             <Text>This is a Callout</Text>
           </Callout>
         </Marker>
-{locations.map((cor)=>(
-  
-  
-   <Marker
-          coordinate={{latitude:cor.latitude, longitude:cor.longitude}}
-          title=""
-          description=""
-          pinColor="red"
-          draggable={true}
-          onDragStart={(e) => {
-            console.log('Drag Start', e.nativeEvent.coordinate);
-          }}
-          onDragEnd={(e) => {
-            console.log('Drag End', e.nativeEvent.coordinate);
 
-            setPin({
-              latitude: e.nativeEvent.coordinate.latitude,
-              longitude: e.nativeEvent.coordinate.longitude,
-            });
-          }}>
-          <Callout>
-            <Text>This is a Callout</Text>
-          </Callout>
-        </Marker>
-  
    
-))}
-
+  
         <Circle center={pin} radius={100} />
+
+        <Marker coordinate={{latitude:-28.709436504015724, longitude:24.730719784318353}} title='Marker' />
+
+
       </MapView>
       
     </View>

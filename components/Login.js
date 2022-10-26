@@ -1,14 +1,19 @@
-import React, { Component } from 'react';
-import { Alert, Button, TextInput, View, StyleSheet,Text,TouchableOpacity } from 'react-native';
- import{Image} from 'react-native';
-
+import React, { Component, useState } from 'react';
+import { Alert, Button, TextInput, View, StyleSheet,Text,TouchableOpacity, Image} from 'react-native';
+import { signIn } from '../auth/auth';
+import { auth } from '../auth/firebase';
 
 export default function Login ({navigation}){
 
-const nextpage = () => {
-  navigation.navigate('Signup')
-}
+  const [email, setEmail] = useState() ;
+  const [password, setPassword] = useState();
 
+ const SignIn = () => {
+  signIn(auth, email, password)
+  navigation.navigate('Home')
+ }
+
+ 
 
    return (
 
@@ -16,7 +21,7 @@ const nextpage = () => {
       
      <View style={styles.container2}>
        
-       <Image style={styles.logo} source={require("../assets/Caught_9remove.png")}/>
+       <Image style={styles.logo} source={require("../assets/icon.png")}/>
    
 
    <Text style={styles.welcome1}>Welcome...</Text>
@@ -32,26 +37,27 @@ const nextpage = () => {
          
           placeholder={'Email'}
           secureTextEntry={true}
-          style={styles.input}
+          style={styles.input} 
+          value={email}
+          onChangeText={(val) => setEmail(val)} 
         />
          <TextInput
-         
-         
+
           placeholder={'Password'}
           secureTextEntry={true}
           style={styles.input}
+          value={password}
+          onChangeText={(val) => setPassword(val)}
         />
        
    
-        <View  style={styles.loginBtn}>
-        <TouchableOpacity>
-          <Text  style={styles.loginText}>
-          Log In
+       <TouchableOpacity onPress={SignIn}>
+          <Text  style={styles.loginText} >
+            Log In
           </Text>
       </TouchableOpacity>
-        </View>
         
-          </View>
+        </View>
        </View>
       </View>
     );
@@ -72,8 +78,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#fff',
     borderRadius:15,
-    height:320,
-    width:302,
+    height:120,
+    width:360,
     marginTop:50,
     
   },
