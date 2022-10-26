@@ -8,50 +8,11 @@ import Welcome from './components/welcome';
 import Home from './components/Home';
 import Geolocation from './components/geolocation';
 import BottomNav from './components/bottomNav';
+import Profile  from './components/Profile'
 
 const Stack = createStackNavigator();
 
-const MyStack = () => {
-  return (
-    <Stack.Navigation
-      intitialRouteName="Welcome"
-      screenOptions={{
-        headerTitleAlign: 'center',
-        headerStyle: {
-          backgroundColor: '#73A9AD',
-        },
-      }}>
-      <Stack.Screen
-        name="Welcome"
-        component={Welcome}
-        options={
-          { title: 'Welcome' }
-        }
-      />
-      <Stack.Screen
-        name="Login"
-        component={Login}
-        options={
-          { title: 'Login' }
-        }
-      />
-      <Stack.Screen
-        name="SignUp"
-        component={Signup}
-        options={
-          { title: 'SignUp' }
-        }
-      />
-      <Stack.Screen
-        name="bottonnav"
-        component={BottomNav}
-        options={
-          { title: 'tabs' }
-        }
-      />
-    </Stack.Navigation>
-  )
-}
+
 
 export default function App() {
   return (
@@ -96,7 +57,13 @@ export default function App() {
           }
         />
 
-
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
+          options={
+            { title: 'Profile' }
+          }
+        />
 
       </Stack.Navigator>
 
