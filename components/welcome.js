@@ -22,7 +22,7 @@ import { Alert, Button, TextInput, View, StyleSheet,Text,TouchableOpacity } from
             <View  style={styles.welcomeBtn}>
         <TouchableOpacity
             title="Get Started"
-            onPress={()=> navigation.navigate('Login')}
+            onPress={()=> navigation.navigate('login')}
         >
           <Text  style={styles.welcomeText}>
           Get started

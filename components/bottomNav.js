@@ -2,7 +2,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import Home from './Home';
 import Add from './Add';
 import Geolocation from './geolocation';
-import Profile from './Profile';
+import Test from './test';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -15,7 +15,7 @@ function BottomNav() {
       barStyle={{ backgroundColor: 'white' }}
    
 >
-      <Tab.Screen name="Home" component={Home} 
+      <Tab.Screen name="home" component={Home} 
       
         options={{
           tabBarLabel: 'Home',
@@ -40,7 +40,7 @@ function BottomNav() {
         options={{
           tabBarLabel: 'Geolocation',
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="cog-outline" color={color} size={26} />
+            <MaterialCommunityIcons name="navigation" color={color} size={26} />
           ),
         }}/>
 

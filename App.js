@@ -8,7 +8,8 @@ import Welcome from './components/welcome';
 import Home from './components/Home';
 import Geolocation from './components/geolocation';
 import BottomNav from './components/bottomNav';
-import Profile  from './components/Profile'
+import Test  from './components/test'
+import Profile from './components/Profile';
 
 const Stack = createStackNavigator();
 
@@ -17,7 +18,9 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        initialRouteName="home"
+      >
       <Stack.Screen
         name="bottonnav"
         component={BottomNav}

@@ -4,7 +4,7 @@ import { getMissingPerson } from '../database/firestore';
 import {ref, onValue} from 'firebase/database';
 
 import { collection, addDoc,getDocs } from "firebase/firestore"; 
-import { View, StyleSheet, ScrollView, Button} from 'react-native';
+import { View, StyleSheet, ScrollView, Button, TouchableOpacity} from 'react-native';
 import {
   Box,
   Heading,
@@ -66,71 +66,45 @@ export default function Home ({navigation}) {
 
 <View>
 <Box
-        maxW="80"
-        rounded="lg"
-        overflow="hidden"
-        borderColor="coolGray.200"
-        borderWidth="1"
-        _dark={{
-          borderColor: 'coolGray.600',
-          backgroundColor: 'gray.700',
-        }}
-        _web={{
-          shadow: 2,
-          borderWidth: 0,
-        }}
-        _light={{
-          backgroundColor: 'gray.50',
-        }}>
-
-        
-<Box >
-          <AspectRatio w="100%" ratio={16 / 9}>
-            <Image
-              source={{
-                uri: 'https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg',
-              }}
-              alt="image" 
-            />
-          </AspectRatio>
-          <Center
-            bg="green.400"
-            _dark={{
-              bg: 'blue.400',
-            }}
-            _text={{
-              color: 'warmGray.50',
-              fontWeight: '700',
-              fontSize: 'xs',
-            }}
-            position="absolute"
-            bottom="0"
-            px="3"
-            py="1.5">
-            Missing
-          </Center>
-        </Box>
-        <Stack p="4" space={3}>
-          <Stack space={2}>
-            <Heading size="md" ml="-1">
-              {data.firstName}
-            </Heading>
-            <Text
-              fontSize="xs"
-              _light={{
-                color: 'red.500',
-              }}
+              maxW="80"
+              rounded="lg"
+              overflow="hidden"
+              borderColor="coolGray.200"
+              borderWidth="1"
               _dark={{
-                color: 'red.400',
+                borderColor: 'coolGray.600',
+                backgroundColor: 'gray.700',
               }}
-              fontWeight="500"
-              ml="-0.5"
-              mt="-1">
-              {data.missingFrom}
-            </Text>
-          </Stack>
-        </Stack>
-</Box>
+              _web={{
+                shadow: 2,
+                borderWidth: 0,
+              }}
+              _light={{
+                backgroundColor: 'gray.50',
+              }}>
+              <Box>                
+                <Image style={styles.image1} source={require('../assets/shot8.jpg')}/>              
+              </Box>
+              <Stack p="4" space={3}>
+                <Stack space={2}>
+                  <Heading size="md" ml="-1">
+                 {data.firstName}
+                  </Heading>
+                  <Text
+                    fontSize="xs"
+                    _light={{
+                      color: 'Black.500',
+                    }}
+                    _dark={{
+                      color: 'Black.400',
+                    }}
+                    fontWeight="500"
+                    ml="-0.5"
+                    mt="-1">Missing since:{data.missingSince} from:{data.missingFrom}</Text>
+                </Stack>
+              </Stack>
+  </Box>            
+           
 </View>
 
 
@@ -146,43 +120,20 @@ export default function Home ({navigation}) {
     <ScrollView vertical={true}>
       {missingPerson.map((data) => (
     
-    
-    <View >
-      <View style={styles.boxMissing} >
-
-
-        <View >
-    <AspectRatio w="70%" ratio={16 / 9}  onPress={nextpage}>
-    <Image
-                  source={{
-                    uri: 'https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg',
-                  }}
-                  alt="image"
-                 
-                />
-    </AspectRatio>
-        </View>
-      <View   >
-      <Text>{data.firstName} {data.surname}</Text>
-      <Text>Missing From: {data.missingFrom}</Text>
-      <Button title='View More' onPress={()=> navigation.navigate('Profile', {name:data.firstName, lastname:data.surname, from:data.missingFrom, since:data.missingSince, sex:data.gender, Age:data.age, eye:data.eyeColor, hair:data.hairColor, Height:data.height, Weight:data.weight, idMark:data.identityMark, descript:data.description} )} />
-    </View>
-    </View>
-    </View>
-
-    
+        <View style={styles.box1}> 
+        <Image style={styles.boximage} source={require('../assets/shot8.jpg')}/>
+  <Text style={styles.subhead}>{data.firstName} {data.surname}</Text> 
+  <Text style={styles.boxtext}> Missing from:{data.missingFrom}</Text>
+ <Text style={styles.boxtext}> Missing Since: {data.missingSince}</Text> 
+ <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('Profile', {name:data.firstName, lastname:data.surname, from:data.missingFrom, since:data.missingSince, sex:data.gender, Age:data.age, eye:data.eyeColor, hair:data.hairColor, Height:data.height, Weight:data.weight, idMark:data.identityMark, descript:data.description} )} >
+        <Text style={styles.buttonText}>View More</Text>
+ </TouchableOpacity>
+ </View> 
 
     )) }
 </ScrollView>
       </View>
-     
-
-
-
     </View>
-
-
-    
   );
       </Center>
     </NativeBaseProvider>
@@ -192,21 +143,57 @@ export default function Home ({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',    
     backgroundColor: '#ECF0F1',
     padding: 8,
-  },
-  paragraph: {
-    margin: 24,
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
   },  
-  boxMissing: {
-    flexDirection: 'row',
-    width:'100%' ,    
-    backgroundColor: 'whitesmoke',
-    borderRadius: 2,    
-    marginTop: 15
+  heading: {
+    fontWeight: 'bold',
+    margin: 40,
+    fontSize:20,
+    marginLeft:10,
+  },  
+  heading2: {
+    fontFamily: 'Inter',
+    fontWeight: 'bold',
+    fontSize: 20,
+    margin: 20,
+    marginLeft:10,
+  },  
+  box1:{
+    width:400,
+    height:180,
+    backgroundColor:'#FFFFFF',
+    marginTop:10,  
   },
+  boximage:{
+    width: 150,
+    height: 145,
+    borderRadius:5,
+    marginLeft:-16,
+    marginTop: 2,
+  },
+  boxtext:{
+    marginLeft:140,  
+  },
+  image1:{
+    width:240,
+    height:180,  
+  },
+  button:{
+    alignItems: "center",
+    backgroundColor: '#1B6C72',
+    padding: 5,
+    marginLeft: 140,
+    width: 100,
+    height: 30,
+  },
+  buttonText:{
+    color: '#FFFFFF',
+  },
+  subhead:{
+    color: '#1B6C72',
+    fontWeight:'bold',
+    marginLeft:140,
+    marginTop:-145,
+},
 });

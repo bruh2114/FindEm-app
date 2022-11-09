@@ -101,9 +101,13 @@ export default function Signup({ navigation }) {
             <Text style={styles.signupText} >
               Signup
             </Text>
-
-
           </TouchableOpacity>
+
+          <Text 
+          style={styles.signText}
+          onPress={() => navigation.navigate('login')}>
+          Already Registered? Click here to login
+        </Text>             
         </View>
       </View>
     </View>
@@ -188,7 +192,11 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: '600',
     textAlign: 'center',
-
+  },
+  signText: {
+    color: '#1B6C72',
+    marginTop: 25,
+    textAlign: 'center'
   },
 
   signupBtn: {
