@@ -1,10 +1,10 @@
 import { collection, addDoc } from "firebase/firestore"; 
 import { db } from "../auth/firebase";
 
- async function addMissingPerson (){
+ async function addMissingPerson (db, firstName, surname, age, gender, eyeColor, hairColor, height, weight, missingFrom, missingSince, identityMark, description){
     try {
         const docRef = await addDoc(collection(db, "missingPeople"), {
-          name: name ,
+          firstName: firstName,
           surname: surname,
           age: age,
           gender: gender,
@@ -24,7 +24,7 @@ import { db } from "../auth/firebase";
 
 }
 
-async function getMissingPerson (){
+async function getMissingPerson (db){
     const querySnapshot = await getDocs(collection(db, "missingPeople"));
     querySnapshot.forEach((doc) => {
   console.log(`${doc.id} => ${doc.data()}`);

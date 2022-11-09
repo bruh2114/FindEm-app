@@ -1,8 +1,8 @@
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import AssetExample from './AssetExample';
 import Home from './Home';
 import Add from './Add';
-import Setting from './Settings';
+import Geolocation from './geolocation';
+import Test from './test';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -15,11 +15,13 @@ function BottomNav() {
       barStyle={{ backgroundColor: 'white' }}
    
 >
-      <Tab.Screen name="Home" component={Home} 
+      <Tab.Screen name="home" component={Home} 
       
         options={{
           tabBarLabel: 'Home',
-          
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="home" color={color} size={26} />
+          )
         
         }}/>
       
@@ -28,14 +30,18 @@ function BottomNav() {
 
         options={{
           tabBarLabel: 'Add',
-         
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="plus" color={color} size={26} />
+          ),
         }}/>
       
-        <Tab.Screen name="Settings" component={Setting} 
+        <Tab.Screen name="Geolocation" component={Geolocation} 
       
         options={{
-          tabBarLabel: 'Settings',
-         
+          tabBarLabel: 'Geolocation',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="navigation" color={color} size={26} />
+          ),
         }}/>
 
         
@@ -45,3 +51,4 @@ function BottomNav() {
 }
 
 export default BottomNav
+

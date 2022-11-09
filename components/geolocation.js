@@ -1,14 +1,37 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import MapView, { Marker, Callout, Circle } from 'react-native-maps';
-import { Text, View, StyleSheet, Image, Dimensions, Button, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Image, Dimensions, Button, TouchableOpacity, PermissionsAndroid } from 'react-native';
 import * as Location from 'expo-location';
 
+const requestLocationPermission = async () => {
+  try {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      {
+        title: 'Geolocation Permission',
+        message: 'Can we access your location?',
+        buttonNeutral: 'Ask Me Later',
+        buttonNegative: 'Cancel',
+        buttonPositive: 'OK',
+      },
+    );
+    console.log('granted', granted);
+    if (granted === 'granted') {
+      console.log('You can use Geolocation');
+      return true;
+    } else {
+      console.log('You cannot use Geolocation');
+      return false;
+    }
+  } catch (err) {
+    return false;
+  }
+}
 export default function Geolocation() {
   const [pin, setPin] = React.useState({
     latitude: -28.715189523342314,
-    longitude: 24.734669956526762,
-  }) 
-
+    longitude: 24.734669956526762,});
+  const [location, setLocation] = useState(false);
 
   const [ locations, setLocations] = React.useState([
 
@@ -27,19 +50,29 @@ export default function Geolocation() {
 
 
 
-  React.useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        console.log('Permission to access location was denied');
-        return;
+  const getLocation = () => {
+    const result = requestLocationPermission()
+    .then(res => {
+      console.log('res is:', res);
+      if(res){
+        Location.getCurrentPosition(
+          position => {
+            console.log(position);
+            setLocation(position);
+          },
+          error => {
+            console.log(error.code, error.message);
+            setLocation(false);
+          },
+          {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+        )
       }
-      let location = await Location.getCurrentPositionAsync({});
-      console.log(location);
-    })();
-  }, []);
+    })
+    console.log(location);
+  };
   return (
     <View style={styles.container}>
+
       <MapView
         style={styles.map}
         initialRegion={{
@@ -57,16 +90,13 @@ export default function Geolocation() {
           title=""
           description=""
           pinColor="gold"
-          draggable={true}
-          onDragStart={(e) => {
-            console.log('Drag Start', e.nativeEvent.coordinate);
-          }}
+          
           onDragEnd={(e) => {
             console.log('Drag End', e.nativeEvent.coordinate);
 
             setPin({
-              latitude: e.nativeEvent.coordinate.latitude,
-              longitude: e.nativeEvent.coordinate.longitude,
+              location: e.nativeEvent.coordinate.latitude,
+              location: e.nativeEvent.coordinate.longitude,
             });
           }}>
           <Callout>
@@ -74,15 +104,15 @@ export default function Geolocation() {
           </Callout>
         </Marker>
 
-    <Marker coordinate={pin} title='Marker' />
+        
 
-        {locations.map((cor)=>(
-           <Marker coordinate={{latitude:cor.latitude, longitude:cor.longitude}} title='Marker' 
-           />
-        ))}
-  
+          
         <Circle center={pin} radius={100} />
+      
+
       </MapView>
+
+      <Button title="Get Location" onPress={getLocation}/>
       
     </View>
   );

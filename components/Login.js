@@ -8,12 +8,9 @@ export default function Login ({navigation}){
   const [email, setEmail] = useState() ;
   const [password, setPassword] = useState();
 
-
-const nextpage = () => {
-  navigation.navigate('Signup')
-}
  const SignIn = () => {
   signIn(auth, email, password)
+  navigation.navigate('Home')
  }
 
  
@@ -29,11 +26,8 @@ const nextpage = () => {
 
    <Text style={styles.welcome1}>Welcome...</Text>
    <Text style={styles.slogan}>Login to proceed</Text>
-      <TouchableOpacity>
-          
-      </TouchableOpacity>
-
      
+
     <View style={styles.inputcontainer}>
        
         <TextInput
@@ -60,6 +54,11 @@ const nextpage = () => {
           </Text>
       </TouchableOpacity>
         
+      <Text 
+          style={styles.loginText}
+          onPress={() => navigation.navigate('signUp')}>
+          Don't have account? Click here to signup
+        </Text>
         </View>
        </View>
       </View>
@@ -86,12 +85,17 @@ const styles = StyleSheet.create({
     marginTop:50,
     
   },
+  loginText: {
+    color: '#1B6C72',
+    marginTop: 25,
+    textAlign: 'center'
+  },
     
    logo:{
    marginTop:'80%',
-margin:200,
-width:200,
-borderRadius:50,
+  margin:200,
+  width:200,
+  borderRadius:50,
 
    },
 welcome1:{
@@ -119,13 +123,7 @@ color:'#1B6C72',
     marginTop:50,
   },
  
-  loginText:{
-    fontSize:18,
-    color:'#fff',
-    fontWeight:'600',
-    textAlign:'center',
 
-  },
 
 loginBtn:{
 width:140,
