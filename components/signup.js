@@ -16,8 +16,9 @@ export default function Signup({ navigation }) {
 
   const registerUser = () => {
     
-    navigation.navigate('home')
+    
     SignUp(auth, email, password)
+    navigation.navigate('bottonnav')
 
   }
   return (
@@ -123,6 +124,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#73A9AD',
+
+  },
+
+  container2: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 15,
+    height: 620,
+    width: 320,
+
   },
   box: {
 
@@ -136,17 +148,7 @@ const styles = StyleSheet.create({
 
   },
 
-  container2: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff',
-    borderRadius: 15,
-
-    width: 360,
-    marginTop: 50,
-
-  },
+  
 
   logo1: {
     marginTop: 200,
@@ -173,7 +175,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 12,
     color: '#1B6C72',
-    marginTop: -10,
+   
 
   },
 
